@@ -9,6 +9,9 @@ class RangeValidator {
     if (isNaN(newFrom) || typeof newFrom !== "number") {
       throw new TypeError("Age must be number");
     }
+    if (newFrom > this.to || this.to !== undefined) {
+      throw new RangeError("");
+    }
 
     this._from = newFrom;
   }
@@ -19,9 +22,10 @@ class RangeValidator {
     if (isNaN(newTo) || typeof newTo !== "number") {
       throw new TypeError("Age must be number");
     }
-    if (to === i) {
-      throw new RangeError(`From can't be more to`);
+    if (newFrom < this.to || this.to !== undefined) {
+      throw new RangeError("");
     }
+
     this._to = newTo;
   }
   get to() {
